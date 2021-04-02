@@ -1,0 +1,84 @@
+:root{
+    --bg-dark: #000000;
+    --bg-light: #FFFFFFFF;
+}
+
+.light-theme{
+background-color: var(--bg-light); 
+color: black;
+}
+
+.dark-theme{
+background-color: var(--bg-dark); 
+color: white;
+}
+body{
+overflow-x: hidden;
+font-family: 'Poppins', sans-serif;
+font-weight: 400;
+font-size: 1.2vw;
+}
+nav{
+    box-shadow: 0px 0px 10px 4px black;
+    background-color: rgb(64, 29, 116);
+}
+.nav-img{
+    border: solid 1px black;
+    border-radius: 5px;
+    background-color: white;
+}
+.navbar-brand{
+    font-size: 1.5vw;
+}
+
+.container{
+   min-height:71.8vh;
+}
+.container h1{
+    font-size: 5vw;
+}
+
+.text-just{
+    text-align: justify;
+}
+.pad-col{
+    border: solid 1px black;
+    padding: 20px;
+    border-radius: 2px;
+    height: 100%;
+}
+.paso-dos{
+    background-color: lightgray;
+}
+
+label{
+    font-style: italic;
+}
+.ft{
+    position: relative;
+    left: 0;
+    top: -100;
+    text-align: center;
+    color: white;
+    background-color: black;
+    width: 100vw;
+}
+.ft-text{
+    margin:0px;
+}
+.bol{
+    font-weight: bold;
+}
+
+@media ( max-width: 768px) {
+    .navbar-brand{
+        font-size: 4vw;
+    }
+    .container h1{
+        font-size: 10vw;
+    }
+}
+#tema{
+    color: white;
+    background-color: #6349ac;
+}
