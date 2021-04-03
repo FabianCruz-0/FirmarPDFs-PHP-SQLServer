@@ -11,6 +11,7 @@ El back-end esta utilizando una base de datos local de SQLServer, por lo cual no
 * Versión de <code><strong>PHP 8.0.3</strong></code> , Arqitectura x64.
 * Versión de <code><strong>SQL Server 2019</strong></code>.
 * Instalar los driver de PHP para SQL Server en la carpeta <code><strong>xamp/php/ext.</strong></code> <br>
+
 **IMPORTANTE: LA VERSION DEL DRIVER TIENE QUE CORRESPONDER CON LA VERSIÓN DE PHP Y LA ARQUITECTURA QUE ESTÁS USANDO, DE OTRO MODO NUNCA FUNCIONARÁ.** <br>
 ![drivers](http://fabiancruz.x10.mx/static/readme-firmaphp/driver-php.png)
 
