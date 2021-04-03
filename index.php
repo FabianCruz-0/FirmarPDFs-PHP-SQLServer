@@ -95,7 +95,7 @@
     </div>
 
         <div class="container-fluid ft">
-            <p class="text-center ft-text">Fabián Caruz. Todos los derechos reservados.</p>
+            <p class="text-center ft-text">Fabián Cruz. Todos los derechos reservados.</p>
         </div>
 
         
@@ -103,5 +103,24 @@
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
         <script src="/content/JS/index.js"></script> 
+
+
+        <?php
+$serverName = "serverName\sqlexpress";
+
+// Puesto que no se han especificado UID ni PWD en el array  $connectionInfo,
+// La conexión se intentará utilizando la autenticación Windows.
+$connectionInfo = array( "Database"=>"dbName");
+$conn = sqlsrv_connect( $serverName, $connectionInfo);
+
+if( $conn ) {
+     echo "Conexión establecida.<br />";
+}else{
+     echo "<script>console.log('Conexión no se pudo establecer.');</script><br />";
+     die( print_r( sqlsrv_errors(), true));
+}
+?>
+
+
 </body>
 </html>
