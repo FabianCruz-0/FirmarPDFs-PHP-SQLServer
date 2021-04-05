@@ -9,6 +9,7 @@ El servidor (back-end) esta utilizando <code><strong>UNA BASE DE DATOS LOCAL DE 
 Esto provoca que no funcione el procesamiento de datos y marque error.<br>
 
 Si desea ver el funcionamiento del proyecto deberá descargarlo y usar una base de datos local SQL Server.
+
 <center>
 
 [Ver lado del cliente](https://firmarpdfs-php-sqlserver.netlify.app/)
