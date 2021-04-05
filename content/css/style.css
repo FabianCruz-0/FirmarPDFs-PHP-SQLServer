@@ -56,7 +56,7 @@ label{
     font-style: italic;
 }
 .ft{
-    position: relative;
+    position: sticky;
     left: 0;
     top: -100;
     text-align: center;

@@ -99,7 +99,50 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    <script src="/content/JS/index.js"></script>
+    <script>
+        const boton = document.getElementById('tema');
+const bordes = document.querySelectorAll(".pad-col");
+const paso_dos = document.querySelector(".paso-dos");
+
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+  paso_dos.style.backgroundColor = "gray";
+    document.body.classList.replace('light-theme','dark-theme');
+    for (var i = 0; i < bordes.length; i++) {
+      bordes[i].style.borderColor = "white";
+    }
+} else if (currentTheme === 'light') {
+  paso_dos.style.backgroundColor = "lightgray";
+    document.body.classList.replace('dark-theme','light-theme');
+    for (var i = 0; i < bordes.length; i++) {
+      bordes[i].style.borderColor = "black";
+    }
+}
+
+let turno = true;
+boton.addEventListener("click", () => {
+  console.log('hi');
+  if (turno == true) {
+    document.body.classList.replace("light-theme", "dark-theme");
+    theme = 'dark';
+    paso_dos.style.backgroundColor = "gray";
+
+    for (var i = 0; i < bordes.length; i++) {
+      bordes[i].style.borderColor = "white";
+    }
+    turno=false;
+  } else {
+    document.body.classList.replace("dark-theme", "light-theme");
+    theme = 'light';
+    paso_dos.style.backgroundColor = "lightgray";
+    for (var i = 0; i < bordes.length; i++) {
+      bordes[i].style.borderColor = "black";
+    }
+    turno=true;
+  }
+  localStorage.setItem('theme', theme)
+});
+    </script>
 </body>
 
 </html>
