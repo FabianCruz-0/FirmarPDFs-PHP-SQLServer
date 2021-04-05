@@ -35,10 +35,23 @@ require('content/fpdf/fpdf.php');
 require_once('content/FPDI-2.3.6/src/autoload.php');
 require('content/Jurosh/PDFMerge/PDFMerger.php');
 require('content/Jurosh/PDFMerge/PDFObject.php');
+
+date_default_timezone_set("America/Monterrey");
+
+$futureDate=date('j F Y, \a \l\a \h\o\\r\a g:i A', strtotime('+1 year'));
+
 $pdf = new FPDF();
 $pdf->AddPage();
-$pdf->SetFont('Arial','B',16);
-$pdf->Cell(40,10,'¡Hola, Mundo!');
+$pdf->SetFont('Arial','B',12);
+$pdf->Cell(40,10,utf8_decode('Firmado por: '.$nombre.'.'));
+$pdf->Ln(5);
+$pdf->Cell(40,10,utf8_decode('Con RFC: '.$rfc.'.'));
+$pdf->Ln(5);
+$pdf->Cell(40,10,utf8_decode('Con la firma electrónica SAT (archivos .KEY, .CER y contraseña de clave privada).'));
+$pdf->Ln(5);
+$pdf->Cell(40,10,utf8_decode('Firmado el: '.date("j F Y, \a \l\a \h\o\\r\a g:i A".'.')));
+$pdf->Ln(5);
+$pdf->Cell(40,10,utf8_decode('Válido legalmente hasta: '.$futureDate.' (1 año).'));
 $pdf->Output('F',$carpetaDestino.'nuevo.pdf');
 
 $pdf = new \Jurosh\PDFMerge\PDFMerger;
