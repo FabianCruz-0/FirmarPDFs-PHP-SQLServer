@@ -36,12 +36,13 @@
         </center>
         <p class="text-center mt-3">
             Ésta es una plataforma en línea para poder firmar documentos digitales
-            (PDF) y hacerlos válidos legalmente en pasos muy sencillos.
+            (PDF) y hacerlos válidos legalmente en pocos pasos.
         </p>
         <form action="insertDocs.php" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="paso paso-uno  p-3 col-md ">
                     <div class="pad-col">
+                        <center><img src="content/images/1.png" class="number"></center>
                         <p class="text-center bol">
                             Primero, favor de subir el archivo que deseas firmar.
                         </p>
@@ -54,7 +55,9 @@
 
                 <div class="paso p-3 col-md">
                     <div class="pad-col paso-dos">
+                        <center><img src="content/images/2.png" class="number"></center>
                         <p class="text-center bol">
+
                             Segundo, sube tus archivos de Firma Electrónica.
                         </p>
                         <label for="archivo-key">Archivo .KEY:</label>
@@ -70,18 +73,20 @@
 
                 <div class="paso paso-tres p-3 col-md">
                     <div class="pad-col">
+                        <center><img src="content/images/3.png" class="number"></center>
+
                         <p class="text-center bol">Por último, introduce tus datos:</p>
                         <label for="nombre">
                             Nombre Completo:
                         </label>
                         <div class="input-group mb-3">
-                            <input class="form-control" type="text" placeholder="Nombre Completo" id="nombre" required />
+                            <input class="form-control" type="text" placeholder="Nombre Completo" name="nombre" required />
                         </div>
                         <label for="nombre">
                             RFC:
                         </label>
                         <div class="input-group mb-3">
-                            <input class="form-control" type="text" placeholder="RFC" id="rfc" required />
+                            <input class="form-control" type="text" placeholder="RFC" name="rfc" required />
                         </div>
                     </div>
                 </div>

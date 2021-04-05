@@ -48,6 +48,9 @@ nav{
     border-radius: 2px;
     height: 100%;
 }
+.number{
+    height: 10vh;
+}
 .paso-dos{
     background-color: lightgray;
 }

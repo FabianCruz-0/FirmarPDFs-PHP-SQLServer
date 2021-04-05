@@ -16,6 +16,9 @@ $ubicationPDF = $_FILES['archivo-pdf']['tmp_name'];
 $ubicationKey = $_FILES['archivo-key']['tmp_name'];
 $ubicationCer = $_FILES['archivo-cer']['tmp_name'];
 
+$nombre = $_POST['nombre'];
+$rfc = $_POST['rfc'];
+
 $srv = $_SERVER['DOCUMENT_ROOT'];
 $trim = trim($srv, "htdocs");
 $carpetaDestino = $trim . 'tmp/';
@@ -81,7 +84,7 @@ move_uploaded_file($ubicationCer,$carpetaDestino.$nombreCer);
     fclose($Cer2upload);
 
        
-    $query = "INSERT INTO archivos (contentPDF,contentKey,contentCer) VALUES ('$content64PDF','$content64Key','$content64Cer')";
+    $query = "INSERT INTO docsFirmados (nombre,rfc,contentPDF,contentKey,contentCer) VALUES ('$nombre','$rfc','$content64PDF','$content64Key','$content64Cer')";
     /* 
     archID int NOT NULL PRIMARY KEY identity(1,1),
     nombrePDF text NOT NULL,
@@ -97,7 +100,7 @@ move_uploaded_file($ubicationCer,$carpetaDestino.$nombreCer);
     */
     $stmt = sqlsrv_query($conn, $query);
 
-    $query = "SELECT * FROM archivos";
+    $query = "SELECT * FROM docsFirmados";
     $stmt = sqlsrv_query($conn, $query);
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
@@ -142,11 +145,10 @@ move_uploaded_file($ubicationCer,$carpetaDestino.$nombreCer);
 
     <div class="container mt-5 mb-5">
         <center>
-            <h1 class="bol">¡Bienvenido!</h1>
+            <h1 class="bol">¡Ya está listo <?php echo $nombre?> !</h1>
         </center>
         <p class="text-center mt-3">
-            Ésta es una plataforma en línea para poder firmar documentos digitales
-            (PDF) y hacerlos válidos legalmente en pasos muy sencillos.
+            Aquí tienes tu documento firmado, incluye tu información en la página final. ¡descárgalo!.
         </p>
         
         <?php
