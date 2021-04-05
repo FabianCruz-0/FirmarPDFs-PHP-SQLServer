@@ -17,6 +17,7 @@ $ubicationKey = $_FILES['archivo-key']['tmp_name'];
 $ubicationCer = $_FILES['archivo-cer']['tmp_name'];
 
 $nombre = $_POST['nombre'];
+$nombre2Server = utf8_decode($nombre);
 $rfc = $_POST['rfc'];
 
 $srv = $_SERVER['DOCUMENT_ROOT'];
@@ -29,6 +30,25 @@ $carpetaDestino = $trim . 'tmp/';
 move_uploaded_file($ubicationPDF,$carpetaDestino.$nombrePDF);
 move_uploaded_file($ubicationKey,$carpetaDestino.$nombreKey);
 move_uploaded_file($ubicationCer,$carpetaDestino.$nombreCer);
+
+require('content/fpdf/fpdf.php');
+require_once('content/FPDI-2.3.6/src/autoload.php');
+require('content/Jurosh/PDFMerge/PDFMerger.php');
+require('content/Jurosh/PDFMerge/PDFObject.php');
+$pdf = new FPDF();
+$pdf->AddPage();
+$pdf->SetFont('Arial','B',16);
+$pdf->Cell(40,10,'¡Hola, Mundo!');
+$pdf->Output('F',$carpetaDestino.'nuevo.pdf');
+
+$pdf = new \Jurosh\PDFMerge\PDFMerger;
+
+// add as many pdfs as you want
+$pdf->addPDF($carpetaDestino.$nombrePDF, 'all', 'vertical')
+  ->addPDF($carpetaDestino.'nuevo.pdf', 'all');
+
+$pdf->merge('file', $carpetaDestino.'firmado.pdf');
+
 
     $serverName = "DESKTOP-0HN87OP\SQLEXPRESS";
 
@@ -73,6 +93,11 @@ move_uploaded_file($ubicationCer,$carpetaDestino.$nombreCer);
     $content64PDF = base64_encode($contentPDF);
     fclose($PDF2upload);
 
+    $PDFFirmado2upload = fopen($carpetaDestino.'firmado.pdf', "r");
+    $contentPDFFirmado = fread($PDFFirmado2upload, filesize($carpetaDestino.'firmado.pdf'));
+    $content64PDFFirmado = base64_encode($contentPDFFirmado);
+    fclose($PDFFirmado2upload);
+
     $Key2upload = fopen($carpetaDestino.$nombreKey, "r");
     $contentKey = fread($Key2upload, $sizeKey);
     $content64Key = base64_encode($contentKey);
@@ -84,27 +109,25 @@ move_uploaded_file($ubicationCer,$carpetaDestino.$nombreCer);
     fclose($Cer2upload);
 
        
-    $query = "INSERT INTO docsFirmados (nombre,rfc,contentPDF,contentKey,contentCer) VALUES ('$nombre','$rfc','$content64PDF','$content64Key','$content64Cer')";
+    $query = "INSERT INTO docsFirmados (nombre,rfc,contentPDF,contentPDFFirmado,contentKey,contentCer) VALUES ('$nombre2Server','$rfc','$content64PDF','$content64PDFFirmado','$content64Key','$content64Cer')";
     /* 
-    archID int NOT NULL PRIMARY KEY identity(1,1),
-    nombrePDF text NOT NULL,
-	nombreKey text not null,
-	nombreCer text not null,
-	archPDFCont varbinary(MAX) not null,
-	archKeyCont varbinary(MAX) not null,
-	archCerCont varbinary(MAX) not null,
-	tipoPDF varchar(10) not null,
-	tipoKey varchar(10) not null,
-	tipoCer varchar(10) not null
+    docsFirmados(
+    nombre varchar(100) not null,
+    rfc varchar(20) not null,
+    contentPDF varchar(max) not null,
+    contentPDFFirmado varchar (max) not null,
+    contentKey varchar(max) not null,
+    contentCer varchar(max) not null
 
     */
+
     $stmt = sqlsrv_query($conn, $query);
 
     $query = "SELECT * FROM docsFirmados";
     $stmt = sqlsrv_query($conn, $query);
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-        $pdfServer = $row['contentPDF'];
+        $pdfServer = $row['contentPDFFirmado'];
   }
 
    
